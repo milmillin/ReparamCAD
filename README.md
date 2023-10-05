@@ -41,7 +41,7 @@ python run.py name="example" prompt="a chair" init.model="chair" task="sd"
 python TODO
 ```
 
-### Development
+## Development
 
 1. Install `pre-commit` to format Python code.
 
@@ -61,4 +61,8 @@ git config --local filter.remove-notebook-ouput.clean "jupyter nbconvert --Clear
 ```
 pip install -e git+https://github.com/milmillin/simple_slurm.git#egg=simple_slurm
 ```
+
+## Citation
+
+TODO
 
