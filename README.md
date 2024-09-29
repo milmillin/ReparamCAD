@@ -26,7 +26,7 @@ wget https://huggingface.co/CompVis/stable-diffusion-v-1-4-original/resolve/main
 ### Step 1: Running the generation process for each prompt
 
 ```sh
-python run.py name="example" prompt="a chair" init.model="chair" task="sd"
+python run.py name="example" prompt="a chair" init.model="chair_arm" task="sd"
 ```
 
 - Stable diffusion requires a GPU with at least 12GB of VRAM.
@@ -36,6 +36,9 @@ python run.py name="example" prompt="a chair" init.model="chair" task="sd"
     - You can append `_rot` to enable optimizing for rotation
 
 ### Step 2: Running the constraint discovery
+
+- We use a mesh boolean engine from [Cherchi et. al.](https://github.com/gcherchi/InteractiveAndRobustMeshBooleans). Please clone their repository to a sibling folder to ReparamCAD and follow their instruction to compile it. (See `rpcad/mesh_boolean.py` for the wrapper to the engine).
+
 
 ```
 python TODO

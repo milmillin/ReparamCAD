@@ -1,0 +1,9 @@
+hydra:
+  run:
+    dir: output/${name}/${task.name}--${init.model}--${prompt}
+  job:
+    chdir: true
+defaults:
+  - base_config
+  - task: sd
+  - _self_

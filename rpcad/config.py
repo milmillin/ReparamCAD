@@ -9,7 +9,7 @@ class CameraConfig:
     fov_max: float = 40.0  # Maximum camera field of view angle during renders
     dist_min: float = 2.0  # Minimum distance of camera from mesh during renders
     dist_max: float = 2.0  # Maximum distance of camera from mesh during renders
-    elev_min: float = 5.0  # Minimum elevation angle
+    elev_min: float = 10.0  # Minimum elevation angle
     elev_max: float = 50.0  # Maximum elevation angle
     azim_min: float = -180.0  # Minimum azimuth angle
     azim_max: float = 180.0  # Maximum azimuth angle

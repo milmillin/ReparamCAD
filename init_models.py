@@ -209,18 +209,7 @@ def _chair_arm(
         "(right_arm)",
     ]
 
-    colors = [
-        (51, 120, 182),
-        (246, 126, 0),
-        (65, 160, 33),
-        (205, 35, 33),
-        (146, 103, 191),
-        (136, 86, 74),
-        (220, 119, 195),
-        (68, 190, 208),
-    ]
-
-    return _init_detach_o_s(o, s, names, Cube, colors, options)
+    return _init_detach_o_s(o, s, names, Cube, Colors.DEFAULT_BROWN, options)
 
 
 @register_detached("car")
@@ -283,16 +272,7 @@ def _car(
         CylinderX,
     ]
 
-    # colors = [*([Colors.GRAY_30] * 3), *([Colors.GRAY_50] * 4)]
-    colors = [
-        (51, 120, 182),
-        (246, 126, 0),
-        (146, 103, 191),
-        (68, 190, 208),
-        (136, 86, 74),
-        (220, 119, 195),
-        (65, 160, 33),
-    ]
+    colors = [*([Colors.GRAY_30] * 3), *([Colors.GRAY_50] * 4)]
 
     return _init_detach_o_s(o, s, names, prims, colors, options)
 
@@ -344,16 +324,7 @@ def _table(
         "(right_front_leg)",
     ]
 
-    colors = [
-        (65, 160, 33),
-        (51, 120, 182),
-        (205, 35, 33),
-        (246, 126, 0),
-        (146, 103, 191),
-        (220, 119, 195),
-    ]
-
-    return _init_detach_o_s(o, s, names, Cube, colors, options)
+    return _init_detach_o_s(o, s, names, Cube, Colors.DEFAULT_BROWN, options)
 
 
 @register_detached("camera")
@@ -371,7 +342,9 @@ def _camera(
 ) -> Model:
     device = options.device
     xfrms = [
-        Xfrm.device(device).from_o_s([-width / 2, -height / 2, -0.5], [width, height, body_depth]),
+        Xfrm.device(device).from_o_s(
+            [-width / 2, -height / 2, -0.5], [width, height, body_depth]
+        ),
         Xfrm.device(device).from_o_s(
             [-width / 2, -height / 2, -0.5 + body_depth],
             [grip_width, height, grip_depth],
@@ -392,12 +365,7 @@ def _camera(
         Cube,
     ]
     names = ["body", "grip", "lens", "flash"]
-    colors = [
-        (51, 120, 182),
-        (205, 35, 33),
-        (65, 160, 33),
-        (246, 126, 0),
-    ]
+    colors = [Colors.BLACK, Colors.GRAY_30, Colors.GRAY_50, Colors.GRAY_30]
 
     return _init_detach_xfrm(xfrms, names, prims, colors, options)
 
@@ -416,7 +384,9 @@ def _bottle(
     I = Xfrm.device(options.device)
     xfrms = [
         I.from_o_s([-width / 2, -height / 2, -width / 2], [width, height0, width]),
-        I.from_o_s([-width / 2, -height / 2 + height0, -width / 2], [width, height1, width]),
+        I.from_o_s(
+            [-width / 2, -height / 2 + height0, -width / 2], [width, height1, width]
+        ),
         I.from_o_s(
             [-width1 / 2, -height / 2 + height0 + height1, -width1 / 2],
             [width1, 0.2, width1],
@@ -429,12 +399,13 @@ def _bottle(
     ]
     names = ["body", "body2", "head"]
     colors = [
-        (51, 120, 182),
-        (205, 35, 33),
-        (65, 160, 33),
+        Colors.EMERALD,
+        Colors.EMERALD,
+        Colors.GRAY_50,
+        Colors.GRAY_50,
+        Colors.GRAY_50,
     ]
-    return _init_detach_xfrm(xfrms, names, prims, colors, options)  # type: ignore
-
+    return _init_detach_xfrm(xfrms, names, prims, colors, options)
 
 def initialize_model(name: str, device: Optional[Device] = None, requires_grad: bool = True, **kwargs) -> Model:
     if device is None:

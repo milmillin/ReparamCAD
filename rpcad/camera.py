@@ -11,14 +11,14 @@ from .defaults import Default
 # ----------------------------------------------------------------------------
 
 
-def projection(fov: float = 45.0, ar: float = 1.0, near: float = 1.0, far: float = 50.0):
+def projection(fov_rad: float = np.radians(45.0), ar=1.0, near=1.0, far=50.0):
     """
     From https://github.com/rgl-epfl/large-steps-pytorch by @bathal1 (Baptiste Nicolet)
 
     Build a perspective projection matrix.
     Parameters
     ----------
-    fov : float
+    fov_x : float
         Horizontal field of view (in degrees).
     ar : float
         Aspect ratio (w/h).
@@ -27,7 +27,6 @@ def projection(fov: float = 45.0, ar: float = 1.0, near: float = 1.0, far: float
     far : float
         Depth of the far plane relative to the camera.
     """
-    fov_rad = np.radians(fov)
     tanhalffov = np.tan((fov_rad / 2))
     max_y = tanhalffov * near
     min_y = -max_y
@@ -47,7 +46,6 @@ def projection(fov: float = 45.0, ar: float = 1.0, near: float = 1.0, far: float
     proj_mat[2, 3] = -(far * near) / (far - near)
 
     return proj_mat
-
 
 def translate(x: float, y: float, z: float) -> np.ndarray:
     return np.array([[1, 0, 0, x], [0, 1, 0, y], [0, 0, 1, z], [0, 0, 0, 1]]).astype(np.float32)
